@@ -20,5 +20,3 @@ func _on_hitbox_controler_body_entered(body):
 	if body != $".":
 		self.queue_free()
 
-
-		

@@ -7,7 +7,7 @@ var time_disp = true
 var movimientoActivo= true 
 var tipo = ''
 var inmune = false
-
+var vida 
 @export var bala:PackedScene
 
 @export var inventario = ['cuchillo',"pistola"]
@@ -18,8 +18,15 @@ func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
 	$Lacer/CollisionShape2D.disabled = true
 	
-	
+
+
+#RECORDATORIO: BALANCEAR ARMAS
+#NO TIENE SENTIDO EL MEELE SI LAS OTRA DOS ESTAN ROTISIMAS
+
 func _physics_process(delta):
+	vida =$HealthComponent.current_health
+	$ProgressBar.value = vida
+	
 	if movimientoActivo:
 		#Inventario check // NOTA: esta logica se puede mil veces mejorar pero por tiempo ekisde :/
 		if Input.is_action_just_pressed('inv1'):
@@ -132,8 +139,7 @@ func _on_prueba_cam_tran_dere():
 	movimientoActivo = false 
 	await get_tree().create_timer(1).timeout
 	movimientoActivo = true
-	pass # Replace with function body.
-
+	
 func _on_health_component_on_dead():
 	self.queue_free()
 
@@ -143,4 +149,3 @@ func _on_health_component_on_damage_took():
 	$HealthComponent.process_mode = Node.PROCESS_MODE_DISABLED
 	await get_tree().create_timer(2).timeout
 	$HealthComponent.process_mode = Node.PROCESS_MODE_INHERIT
-	pass # Replace with function body.

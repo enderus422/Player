@@ -25,7 +25,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-
+#LITERALMENTE ES COMO EL CAEZA DE PINCHOS DEL MARIO EL MECANISMO...
 func _on_arriba_body_entered(body):
 	if body.has_method("player") and !playerDetect :
 		await get_tree().create_timer(0.5).timeout

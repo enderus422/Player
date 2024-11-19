@@ -41,7 +41,6 @@ scale = Vector2(5, 5)
 
 [node name="AbajoCol" type="CollisionShape2D" parent="DeteccionPlayer/Abajo"]
 rotation = -1.5708
-scale = Vector2(1, 1)
 shape = SubResource("SeparationRayShape2D_inidk")
 debug_color = Color(0.27294, 0.50122, 1, 0.42)
 
@@ -50,7 +49,6 @@ rotation = -1.5708
 scale = Vector2(5, 5)
 
 [node name="DerechaCol" type="CollisionShape2D" parent="DeteccionPlayer/Derecha"]
-scale = Vector2(1, 1)
 shape = SubResource("SeparationRayShape2D_inidk")
 debug_color = Color(0.27294, 0.50122, 1, 0.42)
 
@@ -60,7 +58,6 @@ scale = Vector2(5, 5)
 
 [node name="IzquierdaCol" type="CollisionShape2D" parent="DeteccionPlayer/Izquierda"]
 rotation = -3.14159
-scale = Vector2(1, 1)
 shape = SubResource("SeparationRayShape2D_inidk")
 debug_color = Color(0.27294, 0.50122, 1, 0.42)
 

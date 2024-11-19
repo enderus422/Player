@@ -38,6 +38,12 @@ position = Vector2(577, 319)
 [node name="EnemigoEnvestida" parent="." instance=ExtResource("5_46u26")]
 position = Vector2(118, 573)
 
+[node name="Enemigo2" parent="." instance=ExtResource("2_5dc8l")]
+position = Vector2(849, 141)
+
+[node name="Enemigo3" parent="." instance=ExtResource("2_5dc8l")]
+position = Vector2(1005, 143)
+
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="TranDere" from="pruebaCam" to="CharacterBody2D" method="_on_prueba_cam_tran_dere"]

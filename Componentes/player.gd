@@ -15,6 +15,7 @@ var posiInventario = 1
 
 func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
+	$Lacer/CollisionShape2D.disabled = true
 	
 	
 func _physics_process(delta):
@@ -41,6 +42,9 @@ func _physics_process(delta):
 				
 		if inventario.has('cosa') and posiInventario == 3: 
 			if Input.is_action_just_pressed("ui_accept"):
+				$Lacer/CollisionShape2D.disabled = false
+				await get_tree().create_timer(1).timeout
+				$Lacer/CollisionShape2D.disabled = true
 				
 				print("cositas pasando")
 		

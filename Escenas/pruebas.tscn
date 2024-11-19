@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://btgw4jjdbf426"]
+[gd_scene load_steps=10 format=3 uid="uid://btgw4jjdbf426"]
 
 [ext_resource type="PackedScene" uid="uid://gyul7sdy1i82" path="res://Componentes/player.tscn" id="1_71jtm"]
 [ext_resource type="Script" path="res://Escenas/pruebas.gd" id="1_iq5k6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://n3dm51eqaj00" path="res://Componentes/prueba_cam.tscn" id="4_5hyvm"]
 [ext_resource type="PackedScene" uid="uid://bixqvhqy4mhvw" path="res://Enemigos/enemigo_envestida.tscn" id="5_46u26"]
 [ext_resource type="PackedScene" uid="uid://cetkkqxt6v5np" path="res://Items/cofre.tscn" id="6_pafer"]
+[ext_resource type="PackedScene" uid="uid://dpk0wvjn5b0xb" path="res://Items/botiquin.tscn" id="7_4mol6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
 size = Vector2(83, 20)
@@ -47,6 +48,9 @@ position = Vector2(1005, 143)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("6_pafer")]
 position = Vector2(768, 459)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("7_4mol6")]
+position = Vector2(430, 108)
 
 [connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
 [connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c20lwf23s7jf"]
+
+[ext_resource type="Script" path="res://BalaPlayer.gd" id="1_g6kjx"]
+[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="2_vo3ac"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiji3"]
+
+[node name="BalaPlayer" type="CharacterBody2D"]
+script = ExtResource("1_g6kjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jiji3")
+
+[node name="HitboxControler" parent="." instance=ExtResource("2_vo3ac")]
+scale = Vector2(0.3, 0.3)
+
+[connection signal="body_entered" from="HitboxControler" to="." method="_on_hitbox_controler_body_entered"]
+
+[editable path="HitboxControler"]

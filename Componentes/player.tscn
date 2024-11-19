@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://gyul7sdy1i82"]
+
+[ext_resource type="Texture2D" uid="uid://c54xevlwykyry" path="res://icon.svg" id="1_dm08i"]
+[ext_resource type="Script" path="res://Componentes/player.gd" id="1_juytb"]
+[ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="2_5ab1j"]
+[ext_resource type="PackedScene" uid="uid://c20lwf23s7jf" path="res://Componentes/bala_player.tscn" id="2_vwu1f"]
+[ext_resource type="Script" path="res://Componentes/Laser.gd" id="3_ny2yh"]
+[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="3_ppvsu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kt1t"]
+size = Vector2(690, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tndv5"]
+radius = 12.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_juytb")
+bala = ExtResource("2_vwu1f")
+
+[node name="Lacer" type="Area2D" parent="."]
+position = Vector2(-2.38419e-07, -1.50463e-36)
+rotation = 5.63218
+scale = Vector2(0.7, 0.7)
+script = ExtResource("3_ny2yh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lacer"]
+position = Vector2(364.286, 1.24888e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_5kt1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_dm08i")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_5ab1j")]
+scale = Vector2(0.7, 0.7)
+
+[node name="HitboxControler" parent="." instance=ExtResource("3_ppvsu")]
+position = Vector2(38, 1)
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tndv5")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(21, 0)
+
+[connection signal="area_entered" from="Lacer" to="Lacer" method="_on_area_entered"]
+[connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
+
+[editable path="HitboxControler"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://coa8oysy1dcv5"]
+
+[ext_resource type="Script" path="res://enemigo.gd" id="1_44ii7"]
+[ext_resource type="PackedScene" uid="uid://bbmqaxnsny75u" path="res://Componentes/HealthComponent.tscn" id="1_vfbuv"]
+[ext_resource type="PackedScene" uid="uid://qt7h3io8chkv" path="res://Componentes/hitbox_controler.tscn" id="2_qpooe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26sp"]
+
+[node name="Enemigo" type="CharacterBody2D"]
+script = ExtResource("1_44ii7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_b26sp")
+debug_color = Color(0.967257, 0, 0.475396, 0.42)
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_vfbuv")]
+position = Vector2(1, -1)
+
+[node name="HitboxControler" parent="." instance=ExtResource("2_qpooe")]
+position = Vector2(68, 4)
+
+[connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]

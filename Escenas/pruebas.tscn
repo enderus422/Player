@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://btgw4jjdbf426"]
+
+[ext_resource type="PackedScene" uid="uid://gyul7sdy1i82" path="res://Componentes/player.tscn" id="1_71jtm"]
+[ext_resource type="Script" path="res://Escenas/pruebas.gd" id="1_iq5k6"]
+[ext_resource type="PackedScene" uid="uid://coa8oysy1dcv5" path="res://enemigo.tscn" id="2_5dc8l"]
+[ext_resource type="PackedScene" uid="uid://n3dm51eqaj00" path="res://Componentes/prueba_cam.tscn" id="4_5hyvm"]
+[ext_resource type="PackedScene" uid="uid://bixqvhqy4mhvw" path="res://Enemigos/enemigo_envestida.tscn" id="5_46u26"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3b10"]
+size = Vector2(83, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3kny"]
+
+[node name="Pruebas" type="Node2D"]
+script = ExtResource("1_iq5k6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(596, 265)
+shape = SubResource("RectangleShape2D_c3b10")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_71jtm")]
+position = Vector2(110, 99)
+
+[node name="Enemigo" parent="." instance=ExtResource("2_5dc8l")]
+position = Vector2(695, 138)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(183, 341)
+shape = SubResource("CircleShape2D_p3kny")
+
+[node name="pruebaCam" parent="." instance=ExtResource("4_5hyvm")]
+position = Vector2(577, 319)
+
+[node name="EnemigoEnvestida" parent="." instance=ExtResource("5_46u26")]
+position = Vector2(118, 573)
+
+[connection signal="transicion" from="." to="CharacterBody2D" method="_on_pruebas_transicion"]
+[connection signal="body_entered" from="Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="TranDere" from="pruebaCam" to="CharacterBody2D" method="_on_prueba_cam_tran_dere"]

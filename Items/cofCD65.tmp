@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cetkkqxt6v5np"]
+
+[ext_resource type="Script" path="res://Items/Cofre.gd" id="1_8eckj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nwxq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_udhgr"]
+radius = 15.3659
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_8eckj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_6nwxq")
+debug_color = Color(0.755354, 0.494627, 0, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_udhgr")
+debug_color = Color(0.69007, 0.468262, 0.466911, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

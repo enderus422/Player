@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 var time_disp = true
 var movimientoActivo= true 
 var tipo = ''
+var inmune = false
 
 @export var bala:PackedScene
 
@@ -57,7 +58,6 @@ func _physics_process(delta):
 				$HitboxControler.position = Vector2(38,0) 
 				$Marker2D.position = Vector2(40,0) 
 				$Lacer.global_rotation_degrees= 0
-				print($Lacer.rotation)
 				
 			elif direction_x == -1:
 				$HitboxControler.position = Vector2(-38,0) 
@@ -137,3 +137,10 @@ func _on_prueba_cam_tran_dere():
 func _on_health_component_on_dead():
 	self.queue_free()
 
+func _on_health_component_on_damage_took():
+	#desabilitamos el proceso de Healthcomponent para que no nos hagan daño 
+	print($HealthComponent.current_health)
+	$HealthComponent.process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(2).timeout
+	$HealthComponent.process_mode = Node.PROCESS_MODE_INHERIT
+	pass # Replace with function body.

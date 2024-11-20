@@ -13,6 +13,7 @@ var vida
 @export var inventario = ['cuchillo',"pistola"]
 var posiInventario = 1
 
+var laserActiv= false 
 
 func _ready():
 	$HitboxControler/CollisionShape2D.disabled = true
@@ -51,8 +52,10 @@ func _physics_process(delta):
 		if inventario.has('cosa') and posiInventario == 3: 
 			if Input.is_action_just_pressed("ui_accept"):
 				$Lacer/CollisionShape2D.disabled = false
+				laserActiv = true
 				await get_tree().create_timer(1).timeout
 				$Lacer/CollisionShape2D.disabled = true
+				laserActiv = false
 				
 				print("cositas pasando")
 		
@@ -64,12 +67,14 @@ func _physics_process(delta):
 			if direction_x == 1:
 				$HitboxControler.position = Vector2(38,0) 
 				$Marker2D.position = Vector2(40,0) 
-				$Lacer.global_rotation_degrees= 0
+				if !laserActiv:
+					$Lacer.global_rotation_degrees= 0
 				
 			elif direction_x == -1:
 				$HitboxControler.position = Vector2(-38,0) 
 				$Marker2D.position = Vector2(-40,0) 
-				$Lacer.global_rotation_degrees= 180
+				if !laserActiv:
+					$Lacer.global_rotation_degrees= 180
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
@@ -80,11 +85,13 @@ func _physics_process(delta):
 			if direction_y == 1:
 				$HitboxControler.position = Vector2(0,38) 
 				$Marker2D.position = Vector2(0,40) 
-				$Lacer.global_rotation_degrees= 90
+				if !laserActiv:
+					$Lacer.global_rotation_degrees= 90
 			elif direction_y == -1:
 				$HitboxControler.position = Vector2(0,-38) 
 				$Marker2D.position = Vector2(0,-40) 
-				$Lacer.global_rotation_degrees= -90
+				if !laserActiv:
+					$Lacer.global_rotation_degrees= -90
 				
 		else:
 			velocity.y = move_toward(velocity.x, 0, SPEED)
